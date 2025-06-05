@@ -3,48 +3,51 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { useState } from 'react';
 
 function App() {
-  const [fortune, setFortune] = useState('');
-  const [isBroken, setIsBroken] = useState(false);
+  const [sorte, setSorte] = useState('');
+  const [isQuebrado, setIsQuebrado] = useState(false);
 
-  const phrases = [
-    'A sorte está ao seu lado!',
-    'Você terá uma surpresa agradável em breve.',
-    'Grandes oportunidades estão a caminho.',
-    'Seu trabalho duro será recompensado.',
-    'Prepare-se para algo incrível em sua vida!',
+  const frases = [
+    'A vida trará coisas boas se tiveres paciência',
+    'Demonstre amor e alegria em todas as oportunidades e verás que a paz nasce dentro de você',
+    'Não compense na ira o que lhe falta na razão',
+    'Defeitos e virtudes são apenas dois lados da mesma moeda',
+    'A maior de todas as torres começa no solo',
+    'Não há que ser forte. Há que ser flexível',
+    'Gente todo dia arruma os cabelos, por que não o coração?',
+    'Há três coisas que jamais voltam; a flecha lançada, a palavra dita e a oportunidade perdida'
   ];
 
-  const breakCookie = () => {
-    const randomIndex = Math.floor(Math.random() * phrases.length);
-    setFortune(phrases[randomIndex]);
-    setIsBroken(true);
+  const quebrarBiscoito = () => {
+    const randomIndex = Math.floor(Math.random() * frases.length);
+    setSorte(frases[randomIndex]);
+    setIsQuebrado(true);
   };
 
-  const resetCookie = () => {
-    setFortune('');
-    setIsBroken(false);
+  const resetarBiscoito = () => {
+    setSorte('');
+    setIsQuebrado(false);
   };
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>FortuneCookie</Text>
 
-      {!isBroken ? (
-        <TouchableOpacity onPress={breakCookie}>
+      {!isQuebrado ? (
+        <TouchableOpacity onPress={quebrarBiscoito}>
           <Image
             source={require('./assets/biscoitoInteiro.png')}
-            style={styles.cookieImage}
+            style={styles.biscoitoImagem}
           />
         </TouchableOpacity>
       ) : (
         <>
           <Image
             source={require('./assets/biscoitoQuebrado.png')}
-            style={styles.cookieImage}
+            style={styles.biscoitoImagem}
           />
-          <Text style={styles.fortuneText}>{fortune}</Text>
-          <TouchableOpacity onPress={resetCookie} style={styles.resetButton}>
-            <Text style={styles.resetButtonText}>Quebrar outro biscoito</Text>
+          <Text style={styles.sorteText}>{sorte}</Text>
+          <TouchableOpacity onPress={resetarBiscoito} style={styles.resetarButton}>
+            <Text style={styles.resetarButtonText}>Quebrar outro biscoito</Text>
           </TouchableOpacity>
         </>
       )}
@@ -67,12 +70,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 20,
   },
-  cookieImage: {
+  biscoitoImagem: {
     width: 200,
     height: 200,
     marginBottom: 20,
   },
-  fortuneText: {
+  sorteText: {
     fontSize: 18,
     fontStyle: 'italic',
     textAlign: 'center',
@@ -80,13 +83,13 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     paddingHorizontal: 20,
   },
-  resetButton: {
+  resetarButton: {
     backgroundColor: '#f8b400',
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 10,
   },
-  resetButtonText: {
+  resetarButtonText: {
     color: '#fff',
     fontSize: 16,
     fontWeight: 'bold',
